@@ -57,6 +57,15 @@ class BinarySearchTree {
     }
     contains(value){
         // return true or false if the contains the given value or not
+        if (this.root === null) return false
+        let current = this.root;
+        while(current !== null){
+            console.log(current, 'current')
+            if(value === current.value ) return true
+            else if (value > current.value) current = current.right
+            else current = current.left
+        }
+        return false
     }
 }
 
@@ -73,3 +82,6 @@ console.log(bst)
 
 const findNodeRes = bst.find(32)
 console.log(findNodeRes, 'findNodeRes' )
+
+const containsValRes = bst.contains(40)
+console.log(containsValRes, 'containsValRes' )
