@@ -23,11 +23,13 @@ class DoublyLinkedList {
         if (this.head === null) {
             this.head = newNode;
             this.tail = newNode
+            this.length += 1
             return this;
         }
         newNode.prev = this.tail;
         this.tail.next = newNode;
         this.tail = newNode
+        this.length += 1
     }
     pop() {
         if (this.head === null) return
@@ -41,35 +43,77 @@ class DoublyLinkedList {
         }
         popped.next = null
         popped.prev = null
+        this.length -= 1
+
     }
     shift() {
         if (this.head === null) return;
-        if ( this.head === this.tail){
+        if (this.head === this.tail) {
             this.tail = null
             this.head = null
-        } else if (this.head.next !== null){
+        } else if (this.head.next !== null) {
             const shifted = this.head;
             this.head = this.head.next;
             this.head.prev = null;
             shifted.next = null
         }
+        this.length -= 1
 
     }
     unshift(val) {
         if (this.head === null) return
         const newNode = new Node(val);
-        newNode.next = head;
+        newNode.next = this.head;
         this.head.prev = newNode;
         this.head = newNode
+        this.length += 1
     }
     get(index) {
-        
+        if (this.length < 0 || index > this.length) return -1;
+        let i = 1;
+        let current = this.head
+        while (i < index) {
+            current = current.next;
+            i++
+        }
+        return current
     }
     set(index, val) {
-        // code here
+        if (this.length < 0 || index > this.length) return -1;
+        let i = 1;
+        let current = this.head
+        while (i <= index) {
+            if (i === index) current.val = val
+            else current = current.next;
+            i++
+        }
+        return current
     }
     insert(index, val) {
-        // code here
+        const newNode = new Node(val);
+        if (this.head === null) {
+            this.head = newNode;
+            this.tail = newNode
+            this.length += 1
+            return this;
+        }
+        if (index > this.length) return -1;
+        let i = 1;
+        let current = this.head
+        while (i <= index) {
+            if (i === index) {
+                newNode.prev = current.prev;
+                newNode.next = current;
+                current.prev = newNode;
+                current = (current.prev).prev;
+                if (current === null) this.head = newNode
+                else { current.next = newNode; }
+                this.length += 1
+                break;
+            }
+            else current = current.next;
+            i++
+        }
     }
 }
 
@@ -77,7 +121,10 @@ const linkedList = new DoublyLinkedList()
 linkedList.push(3)
 linkedList.push(5)
 linkedList.push(8)
-linkedList.pop()
+// linkedList.pop()
 linkedList.unshift(12)
-
-console.log(linkedList)
+// const getByIndex = linkedList.get(5)
+// console.log(getByIndex, 'getByIndex')
+// linkedList.set(2, 28)
+const insertRes = linkedList.insert(4, 17)
+console.log(linkedList, insertRes)
