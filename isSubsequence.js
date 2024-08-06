@@ -15,6 +15,24 @@ Space Complexity - 0(1)
 
 **/
 
-function isSubsequence() {
-  // good luck. Add any arguments you deem necessary.
+function isSubsequence(firstStr, secondStr) {
+  let i = 0
+  let j = 0
+  while (i < firstStr.length) {
+    if (j >= secondStr.length) return false
+    if (firstStr[i] === secondStr[j]) {
+      i += 1;
+      j += 1
+    } else {
+      j += 1
+    }
+  }
+  return true
 }
+
+console.log(isSubsequence('hello', 'hello world'), 1)
+console.log(isSubsequence('sing', 'sting'), 2)
+console.log(isSubsequence('abc', 'abracadabra'), 3)
+console.log(isSubsequence('abc', 'acb'), 4)
+console.log(isSubsequence('worildsss', 'hello world'), 5)
+console.log(isSubsequence('stttpo', 'hesltott po'), 6)
