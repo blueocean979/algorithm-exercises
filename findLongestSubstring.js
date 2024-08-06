@@ -13,6 +13,31 @@ findLongestSubstring('thisishowwedoit') // 6
 Time Complexity - O(n)
 **/
 
-function findLongestSubstring(){
-  // add whatever parameters you deem necessary - good luck!
+function findLongestSubstring(s) {
+  if(!s) return null
+  let result = 0;
+  const dict = {};
+  let i = 0;
+  let j = 0;
+  while (j < s.length) {
+    let char = s[j];
+    if (dict.hasOwnProperty(char)) {
+      i = Math.max(dict[char], i);
+    }
+    result = Math.max(result, j - i + 1);
+    dict[char] = j + 1;
+    j+=1
+  }
+  return result;
 }
+
+console.log(findLongestSubstring("abcbaefghij"),'777')
+console.log(findLongestSubstring('rithmschool'))
+console.log(findLongestSubstring('thisisawesome'))
+console.log(findLongestSubstring('thecatinthehat'))
+console.log(findLongestSubstring('bbbbbb'))
+console.log(findLongestSubstring('longestsubstring'))
+console.log(findLongestSubstring())
+
+
+
