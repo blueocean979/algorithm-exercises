@@ -15,7 +15,28 @@ Time Complexity - O(n)
 Space Complexity - O(1)
 **/
 
+function minSubArrayLen(arr, int){
+  let sum = 0
+  let right = 0
+  let left = 0
+  let minLen = Infinity
+  while(left < arr.length) {
+    if(right < arr.length && sum < int){
+      sum += arr[right]
+      right +=1;
+    }
+    else if(sum >= int){
+      minLen = Math.min(minLen, right - left)
+      sum -= arr[left]
+      left += 1
+    }
+    else{
+      break;
+    }
+  } 
+  
+return minLen === Infinity ? 0 : minLen
 
-function minSubArrayLen(){
-  // add whatever parameters you deem necessary - good luck!
 }
+
+console.log(minSubArrayLen([4, 3, 3, 8, 1, 5, 6],10))
