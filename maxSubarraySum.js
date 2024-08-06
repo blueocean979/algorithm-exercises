@@ -16,6 +16,29 @@ Time Complexity - O(N)
 Space Complexity - 0(1)
 **/
 
-function maxSubarraySum(){
-  // add whatever parameters you deem necessary - good luck!
+function maxsubarraySum(arr, num){
+  if(arr.length < num) return null
+  let slide = []
+  console.log(slide)
+  let i = 0
+  let sum = 0
+  let temp = 0
+  for(i ; i< num; i++){
+  slide.push(arr[i]);
+    sum += arr[i]   
+  }
+  let j = num;
+  temp = sum;
+  for(j; j< arr.length; j++){
+    temp = temp - arr[j - num ] + arr[j]
+    sum = Math.max(sum, temp)   
+  }
+return sum
 }
+
+console.log(maxsubarraySum([100,200,300,400], 2), 1)
+console.log(maxsubarraySum([1,4,2,10,23,3,1,0,20], 4), 2)
+console.log(maxsubarraySum([-3,4,0,-2,6,-1], 2), 3)
+console.log(maxsubarraySum([3,-2,7,-4,1,-1,4,-2,1],2))
+console.log(maxsubarraySum([2,3],3))
+
