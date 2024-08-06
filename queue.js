@@ -31,17 +31,9 @@ class Queue {
 
     dequeue(){
         if(this.size === 0) return null
-        let i = 1
-        const dequeued = this.last.value
-        let current = this.first; 
-        console.log(current)
-        while(i < this.size - 1){
-            current = current.next;
-            i++;
-        }
-        current.next = null
-        this.last = current;
-        this.size -=1;
+        const dequeued = this.first
+        this.first = this.first.next
+        dequeued.next = null
         return dequeued
     }
 }
