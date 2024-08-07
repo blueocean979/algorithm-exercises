@@ -18,31 +18,33 @@ Space - O(1)
 function areThereDuplicates() {
   // console.log(...arguments)
   const args = [...arguments]
-  if(!args.length) return false
+  if (!args.length) return false
   const frequencyDict = {}
-  args.forEach(item => {
-      // console.log(item)
-    frequencyDict[item] ? frequencyDict[item] += 1 : frequencyDict[item] = 1
-  })
-  console.log(frequencyDict)
-  return Object.values(frequencyDict).some(element => element > 1)
+  let i = 0
+  for (i; i < args.length; i++) {
+    if (frequencyDict[args[i]]) return true
+    else {
+      frequencyDict[args[i]] = 1
+    }
+  }
+  return false
 }
 
 // Multiple pointers
 // Time - O(n log n)
 function areThereDuplicates2() {
   const args = [...arguments]
-  if(!args.length) return false
-  args.sort()
+  if (!args.length) return false
+  args.sort((a,b) => a-b)
   let left = 0
   let right = 1
-  while (right <= args.length - 1 ) {
-    console.log(args[left] , args[right], '*')
-  if(args[left] === args[right]) return true
-  else {
-    left += 1;
-    right += 1;
-  }
+  while (right <= args.length - 1) {
+    console.log(args[left], args[right], '*')
+    if (args[left] === args[right]) return true
+    else {
+      left += 1;
+      right += 1;
+    }
   }
   return false
 }
@@ -51,10 +53,10 @@ function areThereDuplicates2() {
 // const res = areThereDuplicates('a', 'b', 'c', 'a')
 // const res = areThereDuplicates(1, 2, 2)
 // const res = areThereDuplicates(1,2,3)
-const res = areThereDuplicates('s','p', '4','t', '4', '8',)
+const res = areThereDuplicates('s', 'p', '4', 't', '4', '8',)
 // const res2 = areThereDuplicates2('a', 'b', 'c', 'd', 'e', 'e')
 // const res2 = areThereDuplicates2(2, 1, 3,1)
-const res2 = areThereDuplicates2('s','p', '4','t', '4', '8')
+const res2 = areThereDuplicates2('s', 'p', '4', 't', '4', '8')
 
 
 console.log(res, 'result')
