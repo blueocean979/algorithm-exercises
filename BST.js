@@ -57,15 +57,16 @@ class BinarySearchTree {
     }
     contains(value){
         // return true or false if the contains the given value or not
-        if (this.root === null) return false
-        let current = this.root;
-        while(current !== null){
-            console.log(current, 'current')
-            if(value === current.value ) return true
-            else if (value > current.value) current = current.right
-            else current = current.left
-        }
-        return false
+        // if (this.root === null) return false
+        // let current = this.root;
+        // while(current){
+        //     console.log(current, 'current')
+        //     if(value === current.value ) return true
+        //     else if (value > current.value) current = current.right
+        //     else current = current.left
+        // }
+
+        return this.find(value) ?  true : false
     }
 }
 
