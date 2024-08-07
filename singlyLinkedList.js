@@ -46,10 +46,21 @@ class SinglyLinkedList{
         return current;
     }
     shift(){
-        // code here
+      if(!this.head) return null
+      this.head = this.head.next
+      this.length -= 1
+      if(!this.head) this.tail = null    
     }
-    unshift(val){
-       // code here
+     unshift(val) {
+        let newNode = new Node(val);
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length += 1
     }
     get(index){
         if(index < 0 || index >= this.length) return null;
@@ -117,10 +128,17 @@ class SinglyLinkedList{
     }
 }
 
+const linkedList = new SinglyLinkedList()
 
-
-
-
+// linkedList.push(1)
+// linkedList.push(2)
+// linkedList.push(3)
+// linkedList.push(4)
+console.log(linkedList)
+linkedList.unshift(7)
+console.log(linkedList)
+linkedList.shift()
+console.log(linkedList)
 
 
 
